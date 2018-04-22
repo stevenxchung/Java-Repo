@@ -1,5 +1,8 @@
-// Deck of Cards attempt in Java by Steven Chung
+# Deck of Cards attempt in Java by Steven Chung
 
+This program follows the same implementation concept as in the [python deckOfCards](https://github.com/stevenxchung/Python-Repo/tree/master/Projects/deckOfCards). For more information on this project visit the python link mentioned previously.
+
+```java
 import java.util.*;
 
 public class deckOfCards {
@@ -37,7 +40,7 @@ public class deckOfCards {
     // Main function
     public void main(String[] args) {
         // Array of all 52 cards
-        String[] deck = {"Ace of Hearts", "Ace of Diamonds", "Ace of Clubs", "Ace of Spades", 
+        String[] deck = {"Ace of Hearts", "Ace of Diamonds", "Ace of Clubs", "Ace of Spades",
                         "2 of Hearts", "2 of Diamonds", "2 of Clubs", "2 of Spades",
                         "3 of Hearts", "3 of Diamonds", "3 of Clubs", "3 of Spades",
                         "4 of Hearts", "4 of Diamonds", "4 of Clubs", "4 of Spades",
@@ -50,7 +53,7 @@ public class deckOfCards {
                         "Jack of Hearts", "Jack of Diamonds", "Jack of Clubs", "Jack of Spades",
                         "Queen of Hearts", "Queen of Diamonds", "Queen of Clubs", "Queen of Spades",
                         "King of Hearts", "King of Diamonds", "King of Clubs", "King of Spades"};
-        
+
         int totalcards = deck.length;
 
         // The idea here is the same as in Python but still working out some kinks
@@ -87,3 +90,4 @@ public class deckOfCards {
         */
     }
 }
+```
