@@ -1,0 +1,22 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout"
+      data-form-widgets>
+<head>
+    <title th:inline="text">Edit &middot; [[${post.title}]]</title>
+</head>
+<body>
+<div layout:fragment="header-container"></div>
+  <div layout:fragment="content" class="container-fluid">
+    <div class="main-body--wrapper">
+      <div class="admin-index--title">
+        <div class="content--title search-title">
+          <a th:href="@{/admin}">Admin</a> : <a th:href="@{/admin/blog}">Blog</a> : Edit Post
+        </div>
+      </div>
+      <form layout:include="admin/blog/_post_form :: post-form" th:with="edit=1" th:action="@{'/admin/blog/' + ${post.id} + '/edit'}" method="post" th:object="${postForm}">
+      </form>
+    </div>
+</div>
+</body>
+</html>

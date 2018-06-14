@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:data="https://github.com/mxab/thymeleaf-extras-data-attribute"
+      data-search data-mobile-support>
+<head>
+  <title>Layout</title>
+  <meta id="Viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/favicon.png}"/>
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round|Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+
+  <script th:src="@{/jspm_packages/system.js}"></script>
+  <script th:inline="text">
+    System.config({baseURL: "/[[${@saganApp.version()}]]"});
+  </script>
+  <script th:src="@{/config.js}"></script>
+  <script>
+      System.import('app/main.js')
+  </script>
+
+  <meta name="google-site-verification" content="7qGntFPD9lWAVCtUu5U77v4l68PsTHf6xpzgjQv2j2M" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KZM7GF6');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZM7GF6"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <script type="text/javascript">
+    // Work around Google font rendering issues in webkit browsers on Windows 7
+    if (navigator.userAgent.indexOf("NT 6.1") != -1) {
+      document.body.style.WebkitTextStroke = "0.5px";
+    }
+  </script>
+  <div class="viewport">
+    <header class="navbar header--navbar desktop-only">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <div class="spring-logo--container">
+            <a class="spring-logo" th:href="@{/}" href="/"><span></span></a>
+          </div>
+          <ul class="nav pull-right">
+            <li th:class="${@uih.navClass(navSection?:'','projects')}">
+              <a th:href="@{/projects}" >Projects</a>
+            </li>
+            <li th:class="${@uih.navClass(navSection?:'','guides')}">
+              <a th:href="@{/guides}" >Guides</a>
+            </li>
+            <li th:class="${@uih.navClass(navSection?:'','blog')}">
+              <a th:href="@{/blog}" >Blog</a>
+            </li>
+            <li class="navbar-link nav-search js-nav-search">
+              <a>
+                <i class="icon-search navbar-search--icon js-search-input-open"></i>
+                <span class="search-input-close js-search-input-close">
+                  <i class="icon-remove"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="search-dropdown--container js-search-dropdown">
+        <div class="container-fluid">
+          <div class="search-form--container">
+            <form class="form-inline form-search" th:action="@{/search}" action="/search" method="get">
+              <input type="text" class="search-query search-form--form js-search-input" placeholder="Search for documentation, guides, and posts..." name="q" th:value="${searchForm != null ? searchForm.q : ''}" />
+              <button type="submit" class="search-form--submit"><i class="icon-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div layout:include="_mobile-nav :: mobile-nav"></div>
+    <div class="header--container" layout:fragment="header-container">
+      <div class="header--content" layout:fragment="header-content">
+        <div class="row-fluid container-fluid">
+          <div class="span8">
+            <h1 class="header--content-title" layout:fragment="header">
+              First Last
+            </h1>
+            <p class="header--content-subtitle" layout:fragment="overview">
+              Subttitle Ligula Risus Tristique Pharetra
+            </p>
+          </div>
+          <div class="span4">
+            <div layout:fragment="header-sidebar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" layout:fragment="top-content"></div>
+    <div layout:fragment="full-width--layout"></div>
+    <main layout:fragment="content">
+      <div id="footer-push-down"></div>
+    </main>
+
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="navbar">
+              <div class="container">
+                <ul class="nav">
+                  <li><a th:href="@{/team}">Team</a></li>
+                  <li><a th:href="@{/services}">Services</a></li>
+                  <li><a th:href="@{/tools}">Tools</a></li>
+                  <li><a href="https://store.spring.io">Store</a></li>
+                </ul>
+              </div>
+            </div>
+            &copy; <span th:text="${#calendars.format(#calendars.createToday(),'yyyy')}">2013</span> <a href="http://www.pivotal.io/">Pivotal Software</a>, Inc. All Rights Reserved.
+            <a href="http://www.pivotal.io/terms-of-use">Terms of Use</a>,
+            <a href="http://www.pivotal.io/privacy-policy">Privacy</a>,
+            <a th:href="@{/trademarks}">Trademark Guidelines</a> and
+            <span id="teconsent"></span>
+            <span id='authentication' sec:authorize="isFullyAuthenticated()">
+              [<a th:href="@{/signout}">Sign out</a>]
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div id="scrim"></div>
+    <script async="async" src=//consent.trustarc.com/notice?domain=pivotal.com&c=teconsent&js=nj&text=true&pcookie crossorigin=""></script>
+  </div>
+</body>
+</html>
