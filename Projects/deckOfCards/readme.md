@@ -8,11 +8,11 @@ import java.util.*;
 public class deckOfCards {
     // Swaps a card with another random generated card denoted by randomCard
     // which is within the range of deckOfCards
-    public String shuffle(String[] deck, int totalcards) {
+    public String shuffle(String[] deck, int totalCards) {
         Random r = new Random();
         // Fisher-Yates shuffle, starting from the last card and decreasing
         // until there are no cards left
-        for (int i = totalcards - 1; i > 0; i--) {
+        for (int i = totalCards - 1; i > 0; i--) {
             int j = r.nextInt(i);
 
             String temp = deck[i];
@@ -23,13 +23,13 @@ public class deckOfCards {
         return deck;
     }
     // Function to deal one card at a time as long as the deck is not empty
-    public String deal_one_card(String[] deck, int totalcards) {
-        if (totalcards != 0) {
+    public String deal_one_card(String[] deck, int totalCards) {
+        if (totalCards != 0) {
             System.out.println(deck[0]);
-            for (int k = 1; k < totalcards - 1; k++) {
+            for (int k = 1; k < totalCards - 1; k++) {
                 deck = deck[k];
             }
-            totalcards -= 1;
+            totalCards -= 1;
         } else {
             System.out.println("Sorry, there are no cards left in the deck.");
         }
@@ -54,7 +54,7 @@ public class deckOfCards {
                         "Queen of Hearts", "Queen of Diamonds", "Queen of Clubs", "Queen of Spades",
                         "King of Hearts", "King of Diamonds", "King of Clubs", "King of Spades"};
 
-        int totalcards = deck.length;
+        int totalCards = deck.length;
 
         // The idea here is the same as in Python but still working out some kinks
         while (true) {
@@ -63,11 +63,11 @@ public class deckOfCards {
             int n = callCards.nextInt();
 
             if (n > 0 && n < 53) {
-                for (int call = 0; call < totalcards - 1; call++) {
-                    shuffle(deck, totalcards);
-                    deal_one_card(deck, totalcards);
+                for (int call = 0; call < totalCards - 1; call++) {
+                    shuffle(deck, totalCards);
+                    deal_one_card(deck, totalCards);
                 }
-                if (totalcards == 0) {
+                if (totalCards == 0) {
                     System.out.println("Sorry, there are no cards left in the deck.");
                     break;
                 }
@@ -77,15 +77,15 @@ public class deckOfCards {
                 System.out.println("Sorry, please enter a valid input (non-zero, positive integer).");
             }
             // If there are no more cards in the deck, end the program
-            if (totalcards == 0) {
+            if (totalCards == 0) {
                 break;
             }
         }
 
         /*
         for (int call = 0; call < 52; call++) {
-            shuffle(deck, totalcards);
-            deal_one_card(deck, totalcards);
+            shuffle(deck, totalCards);
+            deal_one_card(deck, totalCards);
         }
         */
     }
