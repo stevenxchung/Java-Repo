@@ -10,9 +10,6 @@ public class Main {
 
     public static boolean hasEqualSum(int first, int second, int sum) {
         int result = first + second;
-        if (result == sum) {
-            return true;
-        }
-        return false;
+        return result == sum;
     }
 }

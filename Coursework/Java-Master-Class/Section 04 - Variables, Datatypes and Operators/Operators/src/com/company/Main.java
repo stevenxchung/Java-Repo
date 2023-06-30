@@ -43,7 +43,7 @@ public class Main {
         System.out.println("Result is now: " + result);
 
         boolean isAlien = false;
-        if (isAlien == true)
+        if (isAlien)
             System.out.println("It is not an alien!");
 
         int topScore = 95;
@@ -66,7 +66,7 @@ public class Main {
             System.out.println("This is not suppose to happen!");
 
         isCar = true;
-        boolean wasCar = isCar ? true : false;
+        boolean wasCar = isCar;
         if (wasCar)
             System.out.println("wasCar is true");
 

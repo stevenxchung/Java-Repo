@@ -10,9 +10,6 @@ public class Main {
     }
 
     public static boolean bark(boolean barking, int hourOfDay) {
-        if (barking && (hourOfDay >= 0 && hourOfDay < 8) || hourOfDay == 23) {
-            return true;
-        }
-        return false;
+        return barking && (hourOfDay >= 0 && hourOfDay < 8) || hourOfDay == 23;
     }
 }
