@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(bark(true, 1));  // True
         System.out.println(bark(false, 2)); // False
-	    System.out.println(bark(true, 8));  // False
-	    System.out.println(bark(true, -1)); // False
+        System.out.println(bark(true, 8));  // False
+        System.out.println(bark(true, -1)); // False
     }
 
     public static boolean bark(boolean barking, int hourOfDay) {
