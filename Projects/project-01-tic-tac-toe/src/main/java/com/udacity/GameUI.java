@@ -27,6 +27,7 @@ public class GameUI extends JPanel {
 
     /**
      * Creates a gameUI given a Game object
+     *
      * @param game
      */
     public GameUI(Game game) {
@@ -47,8 +48,7 @@ public class GameUI extends JPanel {
         JButton newGameButton = new JButton("New Single Player Game");
         newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         newGameButton.addActionListener(new ActionListener() {  // connects the new game button to its buttonPressed method
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 newGameButtonPressed(false);
             }
         });
@@ -56,8 +56,7 @@ public class GameUI extends JPanel {
         JButton new2PlayerGameButton = new JButton("New 2 Player Game");
         new2PlayerGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         new2PlayerGameButton.addActionListener(new ActionListener() {  // connects the new game button to its buttonPressed method
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 newGameButtonPressed(true);
             }
         });
@@ -68,19 +67,19 @@ public class GameUI extends JPanel {
             public void mouseClicked(MouseEvent e) {
 
                 //get grid dimensions and location relative to mouse click
-                JPanel panel = (JPanel)e.getSource();
+                JPanel panel = (JPanel) e.getSource();
                 double boardWidth = panel.getWidth();
                 double boardHeight = panel.getHeight();
                 double boardX = 10; // the horizontal gap left of the grid
                 double boardY = 40; // the vertical gap above the grid
                 //return if clicked outside the grid area
-                if(e.getX()<boardX || e.getY() < boardY)
+                if (e.getX() < boardX || e.getY() < boardY)
                     return;
                 //calculate which part of the grid did they click
-                int i = (int) (3*((e.getX()-boardX)/(boardWidth-boardX)));
-                int j = (int) (3*((e.getY()-boardY)/(boardHeight-boardY)));
+                int i = (int) (3 * ((e.getX() - boardX) / (boardWidth - boardX)));
+                int j = (int) (3 * ((e.getY() - boardY) / (boardHeight - boardY)));
                 //take action and update grid 2D array based on where they clicked
-                panelMouseClicked(i,j);
+                panelMouseClicked(i, j);
             }
         });
 
@@ -104,8 +103,6 @@ public class GameUI extends JPanel {
     }
 
 
-
-
     @Override
     public void paint(Graphics g) {
         //draw everything as normal ..
@@ -113,15 +110,14 @@ public class GameUI extends JPanel {
         // .. plus the grid lines ..
         g.drawImage(grid, 10, 40, null);
         // .. and loop over the game grid and display all x's and o's
-        for(int i=0; i<3;i++){
-            for(int j=2; j>=0;j--) {
-                if(game.gridAt(i,j)=='x'){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 2; j >= 0; j--) {
+                if (game.gridAt(i, j) == 'x') {
                     //based on grid index, calculate the pixel location to draw the x image
-                    g.drawImage(x, 200*i+40,200*j+70, null); // draw an x
-                }
-                else if(game.gridAt(i,j)=='o'){
+                    g.drawImage(x, 200 * i + 40, 200 * j + 70, null); // draw an x
+                } else if (game.gridAt(i, j) == 'o') {
                     //based on grid index, calculate the pixel location to draw the o image
-                    g.drawImage(o, 200*i+40,200*j+70, null); // draw an o
+                    g.drawImage(o, 200 * i + 40, 200 * j + 70, null); // draw an o
                 }
             }
         }
@@ -131,19 +127,20 @@ public class GameUI extends JPanel {
 
     /**
      * Called when mouse is clicked within grid in a valid spot
+     *
      * @param i the x index of the 2D grid array
      * @param j the y index of the 2D grid array
      */
     private void panelMouseClicked(int i, int j) {
         //apply this play at position i and j
-        if(!game.playAt(i,j)){
+        if (!game.playAt(i, j)) {
             //escape if play was invalid
             return;
         }
         //refresh the display to reflect the new play
         this.repaint();
         //check if game ended
-        if(game.doChecks()){
+        if (game.doChecks()) {
             //if game over no need to continue, so return
             return;
         }
@@ -152,19 +149,20 @@ public class GameUI extends JPanel {
         //refresh the display to reflect computer's turn if played
         this.repaint();
         //check if game ended again after computer's turn
-        if(game.doChecks()){
+        if (game.doChecks()) {
             //if game over no need to continue, so return
             return;
         }
     }
 
-    public void gameOver(String message){
+    public void gameOver(String message) {
         JOptionPane.showMessageDialog(null, message, "Game Over!", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
     /**
      * Called when onw of the new game buttons is clicked
+     *
      * @param twoPlayer boolean: true if starting a 2 player game, false for single player game
      */
     private void newGameButtonPressed(boolean twoPlayer) {
